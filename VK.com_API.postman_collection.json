@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "30a2478e-f7a3-4b93-a5f7-d685f96cca25",
+		"name": "VK.com API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22958718"
+	},
+	"item": [
+		{
+			"name": "Add post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"Post_ID\"\r",
+							"var value = pm.response.json().response.post_id\r",
+							"pm.collectionVariables.set(key, value);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text"
+						},
+						{
+							"key": "owner_id",
+							"value": "{{owner_id}}",
+							"type": "text"
+						},
+						{
+							"key": "message",
+							"value": "\"Hello, world!!!!\"",
+							"type": "text"
+						},
+						{
+							"key": "v",
+							"value": "{{version}}",
+							"type": "text"
+						},
+						{
+							"key": "attachments",
+							"value": "photo769563550_457239017",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}wall.post",
+					"host": [
+						"{{baseURL}}wall",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get posts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{baseURL}}wall.get?access_token={{access_token}}&owner_id={{owner_id}}&domain=https://vk.com/id769563550&v={{version}}&count=100&filter=all",
+					"host": [
+						"{{baseURL}}wall",
+						"get"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}"
+						},
+						{
+							"key": "owner_id",
+							"value": "{{owner_id}}"
+						},
+						{
+							"key": "domain",
+							"value": "https://vk.com/id769563550"
+						},
+						{
+							"key": "v",
+							"value": "{{version}}"
+						},
+						{
+							"key": "count",
+							"value": "100"
+						},
+						{
+							"key": "filter",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get post",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{baseURL}}wall.getById?access_token={{access_token}}&posts={{owner_id}}_{{Post_ID}}&v={{version}}",
+					"host": [
+						"{{baseURL}}wall",
+						"getById"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}"
+						},
+						{
+							"key": "posts",
+							"value": "{{owner_id}}_{{Post_ID}}"
+						},
+						{
+							"key": "v",
+							"value": "{{version}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": "vk1.a.VvU7d-QRF1BznBGTPnvyxC_qcTTZzDMOV__saR7v9evx83QJq8QiPqn80jPqJoJfEZl7Zwo2yIdvW1mi_HXwP6Umnp8kv2mqYTN7NDa48z_h_Ld1bd2QDjVG57cfwRQU9OxSJIER50LqJIVYh-Jhj1hui3burbgIrQSmxr5unm19T1HO0AY3b1Q3sj-qlSNXe6uAIowIcFRkiEwcYYojKA"
+		},
+		{
+			"key": "owner_id",
+			"value": "769563550"
+		},
+		{
+			"key": "photo",
+			"value": "https://sun9-east.userapi.com/sun9-18/s/v1/ig2/EwZdTc8ZqwmqnJbYzeFwDgq0-VfNnd8gwbaz3hLRW5p9g3qW9T8du0TgLOpdZHjeRGbN8h5a84DZsSsnL7pXPYkX.jpg"
+		},
+		{
+			"key": "version",
+			"value": "5.131"
+		},
+		{
+			"key": "baseURL",
+			"value": "https://api.vk.com/method/"
+		},
+		{
+			"key": "Post_ID",
+			"value": ""
+		}
+	]
+}

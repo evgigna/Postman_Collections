@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "310252ff-413d-4219-a939-72e5af70367d",
+		"name": "Diplom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22958718"
+	},
+	"item": [
+		{
+			"name": "Список видео раздела Видеопрактика",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token_global}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-vimbox.skyeng.ru/api/v1/compilations/showcase",
+					"protocol": "https",
+					"host": [
+						"api-vimbox",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"compilations",
+						"showcase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Список видео раздела Видеопрактика с неверным методом",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token_global}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-vimbox.skyeng.ru/api/v1/compilations/showcase",
+					"protocol": "https",
+					"host": [
+						"api-vimbox",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"compilations",
+						"showcase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Список видео раздела Видеопрактика без токена",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test-mobile1@skyeng.ru",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Abc12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-vimbox.skyeng.ru/api/v1/compilations/showcase",
+					"protocol": "https",
+					"host": [
+						"api-vimbox",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"compilations",
+						"showcase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Информация о видео",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test-mobile1@skyeng.ru",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Abc12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://content-vimbox.skyeng.ru/cms/api/video?ids=flIlRxcvgpx3bwK7y9INnw%253D%253D",
+					"protocol": "https",
+					"host": [
+						"content-vimbox",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"cms",
+						"api",
+						"video"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "flIlRxcvgpx3bwK7y9INnw%253D%253D"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token_global",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjEwMzM4NzM2LCJpZGVudGl0eSI6InRlc3QtbW9iaWxlMUBza3llbmcucnUiLCJpZGVudGl0eUxvZ2luIjpudWxsLCJpZGVudGl0eUVtYWlsIjoidGVzdC1tb2JpbGUxQHNreWVuZy5ydSIsImlkZW50aXR5UGhvbmUiOiIrNzkxMjI1MjUyNTIiLCJuYW1lIjoiXHUwNDFlXHUwNDNiXHUwNDM1XHUwNDMzIiwic3VybmFtZSI6Ilx1MDQxMFx1MDQzZCIsImVtYWlsIjoidGVzdC1tb2JpbGUxQHNreWVuZy5ydSIsInVpTGFuZ3VhZ2UiOiJydSIsImxvY2FsZSI6InJ1Iiwic2VydmljZUxvY2FsZSI6bnVsbCwidWFzIjozMCwiand0VHlwZSI6MSwianRpIjoiYjA0bGhpc0NLcGlXVXR0UUxJamN0d2c5R002T0RWcVYiLCJicmFuZCI6bnVsbCwiZXhwIjoxNjcyMTI3NDMyLCJhdmF0YXJVcmwiOiJodHRwczpcL1wvYXV0aC1hdmF0YXJzLXNreWVuZy5pbWdpeC5uZXRcLzEwMzM4NzM2XC82YTNkOGU5OC1jNmExLTQxZWItYjg4OC01MGQwZjE5ZjAwMDY_YXV0bz1mb3JtYXQlMkNlbmhhbmNlJmZpdD1jcm9wJmg9MjAwJml4bGliPXBocC0yLjEuMSZxPTc1JnNhdD04JnNoYXJwPTEwJnZpYj04Jnc9MjAwIiwiYmlydGhkYXkiOiIxOTg4LTAzLTAxIiwiYUlzU3Ryb25nIjp0cnVlLCJhVHlwZSI6IlVTRVJOQU1FX1BBU1NXT1JEIiwiYVRpbWUiOjE2NzIwNDEwMzAsInJvbGVzIjpbIlJPTEVfVEVBQ0hFUiIsIlJPTEVfQ1JNMl9URUFDSEVSX0FDQ0VTUyIsIlJPTEVfVFRDX1VTQUdFIiwiUk9MRV9WSU1CT1hfVEVBQ0hFUl9VU0FHRSIsIlJPTEVfVklNQk9YX0NSRUFURV9TQ1JFRU5JTkdfVEVTVCJdfQ.Qer-TljSA1ewtfY0i1TntxTeUIMxVAMua195oRzI-Saqyi4QncAaHPLIHR1c3C4jPG9rnPCEYlN6o4oSHOmLdje5nYE2SLtQhgXSUjznAjbm2nvPVCioDC9wVY1vhAcveqch7T73Tik_P3GP_ESB7MXRmJVse1dwg7FxQaIrR9ZojxSr64i171SP_o74lY3V2tbVQdlM6EVfDorQMCEVpK4PTB54UxegLaYZvUKFi5lv71lBFcegQVZJpR6GxcXhgLu7sg0DgAfnwzn6H5ZBIsQ4TEja0NJTSplD7sN-t_gqrvhTfsJNcaLQbtdP4Aqg1MapYP7Glr56J20jv9o0l8_rsyUOHrNY1V-WX_c5WlYK1l1zKaMt9keKTrJTDDujb6tn_2ELDWb2yJ-BgB-j3bYPc9L9XNFb6d80afH2VyeluGHeki_n3STbx2YlXf8KddL5gUIhtqyR5MfW-4LSGrxkqlSQJ3nScswsWywgIy1H4Z9AS6pDNSBxZypGp3wHQHTYSrUKgf0y037ty4qX4M106zNqaeaIR9HA3sZ-1b7qye6xG9YZ4RIYZFij1DxTG_yBucBVsDPa_X89e6WkD_WseqzhPXNingAaOmfuzaHbeZ_AycwfkTgPUdNQeHGX9p0R8EmpYGSZiN3rX-64csC3m1sSbSWE8EjKGrImIP0",
+			"type": "string"
+		}
+	]
+}

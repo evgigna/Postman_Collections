@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "002cd6f1-0cb7-490a-82ec-d5393fbc88db",
+		"name": "ToDoList - Acceptance testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22958718"
+	},
+	"item": [
+		{
+			"name": "Step1 - Task list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://todo-app-sky.herokuapp.com",
+					"protocol": "https",
+					"host": [
+						"todo-app-sky",
+						"herokuapp",
+						"com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step2 - Add task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"new task\"\r\n}"
+				},
+				"url": {
+					"raw": "https://todo-app-sky.herokuapp.com/",
+					"protocol": "https",
+					"host": [
+						"todo-app-sky",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step3 - Task list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://todo-app-sky.herokuapp.com/",
+					"protocol": "https",
+					"host": [
+						"todo-app-sky",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step4 - Task status Done",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"completed\": true\r\n}"
+				},
+				"url": {
+					"raw": "https://todo-app-sky.herokuapp.com/38901",
+					"protocol": "https",
+					"host": [
+						"todo-app-sky",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"38901"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step5 - Task list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://todo-app-sky.herokuapp.com/",
+					"protocol": "https",
+					"host": [
+						"todo-app-sky",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step6 - Delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://todo-app-sky.herokuapp.com/38901",
+					"protocol": "https",
+					"host": [
+						"todo-app-sky",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"38901"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step7 - Task list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://todo-app-sky.herokuapp.com/",
+					"protocol": "https",
+					"host": [
+						"todo-app-sky",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

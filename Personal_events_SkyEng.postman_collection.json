@@ -1,0 +1,1388 @@
+{
+	"info": {
+		"_postman_id": "9b652ea0-7536-46ce-a3cc-b3265f2bc303",
+		"name": "Личные события SkyEng",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22958718"
+	},
+	"item": [
+		{
+			"name": "Документация",
+			"item": [
+				{
+					"name": "получение расписания",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2022-10-07T00:00:00+03:00\",\r\n    \"till\": \"2022-10-08T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/events",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FAC641\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"igemAPI\",\r\n    \"title\": \"igemAPI\",\r\n    \"startAt\": \"2022-10-05T07:00:00+03:00\",\r\n    \"endAt\": \"2022-10-05T07:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\": \"#FAC641\",\r\n    \"id\": {{eventID}},\r\n    \"startAt\": \"2022-10-07T09:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T09:30:00+03:00\",\r\n    \"title\": \"igemAPI_new\",\r\n    \"description\": \"new desciption\",\r\n    \"backgroundColor\": \"#FAC641\",\r\n    \"oldStartAt\": \"2022-10-05T04:00:00+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/updatePersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Event deleted successfully\", () => {\r",
+									"    pm.expect(jsonData.errors).to.be.null;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startAt\": \"2022-10-05T04:00:00+00:00\",\r\n    \"id\": {{eventID}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/removePersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "966501-1   Создание личного события совпадающего по времени с уже существующим в календаре личным событием",
+			"item": [
+				{
+					"name": "Создание События_1",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"event description\",\r\n    \"title\": \"igemAPI_1\",\r\n    \"startAt\": \"2022-10-07T07:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T07:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание События_2",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"event description\",\r\n    \"title\": \"igemAPI_2\",\r\n    \"startAt\": \"2022-10-07T07:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T07:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "966501-2   Редактирование личного события с пустой датой",
+			"item": [
+				{
+					"name": "Создание личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"var key = \"oldStartAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"igemAPI\",\r\n    \"title\": \"igemAPI\",\r\n    \"startAt\": \"2022-10-07T07:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T07:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование личного события",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\": \"#FAC641\",\r\n    \"id\": {{eventID}},\r\n    \"startAt\": \"\",\r\n    \"endAt\": \"\",\r\n    \"title\": \"igemAPI_new\",\r\n    \"description\": \"new desciption\",\r\n    \"backgroundColor\": \"#FAC641\",\r\n    \"oldStartAt\": \"{{oldStartAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/updatePersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "966501-3   Создание личного события недопустимого цвета",
+			"item": [
+				{
+					"name": "Создание личного события",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F08080\",\r\n    \"color\": \"#FF0000\",\r\n    \"description\": \"igemAPI\",\r\n    \"title\": \"igemAPI\",\r\n    \"startAt\": \"2022-10-07T07:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T07:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "966501-4   Создание личного события с некорректно датой",
+			"item": [
+				{
+					"name": "Создание личного события",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"igemAPI\",\r\n    \"title\": \"igemAPI\",\r\n    \"startAt\": \"2022-09-42T07:00:00+03:00\",\r\n    \"endAt\": \"2022-09-42T07:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "966501-5   Удаление несуществующего личного события",
+			"item": [
+				{
+					"name": "Создание личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"var key = \"startAtDel\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"igemAPI\",\r\n    \"title\": \"igemAPI\",\r\n    \"startAt\": \"2022-10-07T07:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T07:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Event deleted successfully\", () => {\r",
+									"    pm.expect(jsonData.errors).to.be.null;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startAt\": \"{{startAtDel}}\",\r\n    \"id\": {{eventID}}\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/removePersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление личного события 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Event deleted successfully\", () => {\r",
+									"    pm.expect(jsonData.errors).to.be.null;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startAt\": \"{{startAtDel}}\",\r\n    \"id\": {{eventID}}\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/removePersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "966501-6   Создание личного события без указания Названия",
+			"item": [
+				{
+					"name": "Создание личного события",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"igemAPI\",\r\n    \"startAt\": \"2022-10-07T07:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T07:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "966501-7   Создание личного события с нулевой продолжительностью",
+			"item": [
+				{
+					"name": "Создание личного события",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"igemAPI\",\r\n    \"title\": \"igemAPI\",\r\n    \"startAt\": \"2022-10-07T07:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T07:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "966501-8   Создание личного события без выбора цвета",
+			"item": [
+				{
+					"name": "Создание личного события",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"igemAPI\",\r\n    \"title\": \"igemAPI\",\r\n    \"startAt\": \"2022-10-07T07:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T07:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "966501-9   Удаление личного события",
+			"item": [
+				{
+					"name": "Создание личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"var key = \"startAtDel\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"igemAPI\",\r\n    \"title\": \"igemAPI\",\r\n    \"startAt\": \"2022-10-07T07:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T07:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление личного события Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Event deleted successfully\", () => {\r",
+									"    pm.expect(jsonData.errors).to.be.null;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startAt\": \"{{startAtDel}}\",\r\n    \"id\": {{eventID}}\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/removePersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "966501-10   Редактирование несуществующего личного события",
+			"item": [
+				{
+					"name": "Создание личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"var key = \"startAtDel\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"igemAPI\",\r\n    \"title\": \"igemAPI\",\r\n    \"startAt\": \"2022-10-07T07:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T07:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Event deleted successfully\", () => {\r",
+									"    pm.expect(jsonData.errors).to.be.null;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startAt\": \"{{startAtDel}}\",\r\n    \"id\": {{eventID}}\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/removePersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование личного события",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\": \"#FAC641\",\r\n    \"id\": {{eventID}},\r\n    \"startAt\": \"2022-10-07T10:00:00+03:00\",\r\n    \"endAt\": \"2022-10-07T10:30:00+03:00\",\r\n    \"title\": \"igemAPI_new\",\r\n    \"description\": \"new desciption\",\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"oldStartAt\": \"{{startAtDel}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/updatePersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "966501-12   Создание Личного события без выбора Даты и Времени",
+			"item": [
+				{
+					"name": "Создание личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test-mobile1@skyeng.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Abc12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{myToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"igemAPI\",\r\n    \"title\": \"igemAPI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/{{ver}}/schedule/createPersonal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"{{ver}}",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "myToken",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjEwMzM4NzM2LCJpZGVudGl0eSI6InRlc3QtbW9iaWxlMUBza3llbmcucnUiLCJpZGVudGl0eUxvZ2luIjpudWxsLCJpZGVudGl0eUVtYWlsIjoidGVzdC1tb2JpbGUxQHNreWVuZy5ydSIsImlkZW50aXR5UGhvbmUiOiIrNzkxMjI1MjUyNTIiLCJuYW1lIjoiUmFkMTIiLCJzdXJuYW1lIjoiXHUwNDFmXHUwNDM1XHUwNDQyXHUwNDQwXHUwNDNlXHUwNDMyIiwiZW1haWwiOiJ0ZXN0LW1vYmlsZTFAc2t5ZW5nLnJ1IiwidWlMYW5ndWFnZSI6InJ1IiwibG9jYWxlIjoicnUiLCJzZXJ2aWNlTG9jYWxlIjpudWxsLCJ1YXMiOjMwLCJqd3RUeXBlIjoxLCJqdGkiOiI2MUtCd1VhcFZseEU0QVpxVjB0Z2xBc3pZNlJLajRqSSIsImJyYW5kIjpudWxsLCJleHAiOjE2NjUxMjI5OTIsImF2YXRhclVybCI6Imh0dHBzOlwvXC9hdXRoLWF2YXRhcnMtc2t5ZW5nLmltZ2l4Lm5ldFwvMTAzMzg3MzZcL2E0ZjVmMDI3LTcyMTQtNDk3Ni05OWJiLTBmNzQzNmI3MjU0ZD9hdXRvPWZvcm1hdCUyQ2VuaGFuY2UmZml0PWNyb3AmaD0yMDAmaXhsaWI9cGhwLTIuMS4xJnE9NzUmc2F0PTgmc2hhcnA9MTAmdmliPTgmdz0yMDAiLCJiaXJ0aGRheSI6IjE5NzEtMDMtMDUiLCJhSXNTdHJvbmciOnRydWUsImFUeXBlIjoiVVNFUk5BTUVfUEFTU1dPUkQiLCJhVGltZSI6MTY2NTAzNjU4OSwicm9sZXMiOlsiUk9MRV9URUFDSEVSIiwiUk9MRV9DUk0yX1RFQUNIRVJfQUNDRVNTIiwiUk9MRV9UVENfVVNBR0UiLCJST0xFX1ZJTUJPWF9URUFDSEVSX1VTQUdFIiwiUk9MRV9WSU1CT1hfQ1JFQVRFX1NDUkVFTklOR19URVNUIl19.r_FcQ2RgZgzWbCf89tUXQNsOM-3vJ-pMHT0Cjl7mvmrrNwVrIYTBO_2d0dTwzWsPfYaG6qrN-QoR0yNI1F2lpMRf69SZulltkR9Qq2vCqIepCgXzByBk2zYOSjebQupzIwAuWP_k3yxzgBMUQpLPnrV1oadddSPP_mINjvxzY8KDo2yIrndfy2l9GNpNbBDIHAA6_i4MwUpcjo96LbR0F3sMd6pTOyUV686ObzO9wsZASKTxlYgtWXGpSx81yFtgFqjRpQ0zafUZRD2KGNNypb7uE0KlIvcEagh9yeBv8T-ZgFNafrgj0Iu3M2kv1MXFjKNvEhxmZ2ulQWaYefVUQd_rsbVw2czGnKv1xf3P7NdxUAGH2kO_s9yiXvAJ9LaKp_8bbGWMqoS04cTz22CY1omZ2X3mn9M23nCJT9ITvIXawTbBoSEmp4oo3vxz8kd8t4EBrJlIPhehuOUCFahFFOW1D0tAvRUnBQ8BCatquB3QIwS298Z5Sp1LfMqSjl8JoC_4A6Pny8n16qLG6xfjct-EaIhJn80vtFaTyeWKLBNnxrBjzW3O-OPmddWUjyH8X1qWFLdOaUGq8mO1CSw5Cg23uY6fu5xGY110t7J5goGNQb1s72i16FXSpKBtlBlaMCd6Wa7jSKGckqSCgI_KAoVcZwagU_iSLpGUKnaHY1s"
+		},
+		{
+			"key": "baseURL",
+			"value": "https://api-teachers.skyeng.ru"
+		},
+		{
+			"key": "ver",
+			"value": "v2"
+		},
+		{
+			"key": "oldStartAt",
+			"value": "2022-10-07T04:00:00+00:00"
+		},
+		{
+			"key": "eventID",
+			"value": ""
+		},
+		{
+			"key": "startAtDel",
+			"value": ""
+		},
+		{
+			"key": "startAt",
+			"value": ""
+		}
+	]
+}
