@@ -172,11 +172,11 @@
 	"variable": [
 		{
 			"key": "access_token",
-			"value": "vk1.a.VvU7d-QRF1BznBGTPnvyxC_qcTTZzDMOV__saR7v9evx83QJq8QiPqn80jPqJoJfEZl7Zwo2yIdvW1mi_HXwP6Umnp8kv2mqYTN7NDa48z_h_Ld1bd2QDjVG57cfwRQU9OxSJIER50LqJIVYh-Jhj1hui3burbgIrQSmxr5unm19T1HO0AY3b1Q3sj-qlSNXe6uAIowIcFRkiEwcYYojKA"
+			"value": "aaaaa"
 		},
 		{
 			"key": "owner_id",
-			"value": "769563550"
+			"value": "123456789"
 		},
 		{
 			"key": "photo",
@@ -192,7 +192,7 @@
 		},
 		{
 			"key": "Post_ID",
-			"value": ""
+			"value": 28
 		}
 	]
 }

@@ -543,7 +543,7 @@
 	"variable": [
 		{
 			"key": "token",
-			"value": "34a9f156e7f723198b15070b3caecf5801ad6f515b4bc7c04b7188b5ce181d63"
+			"value": "aaaaa"
 		},
 		{
 			"key": "baseURL",
@@ -555,20 +555,20 @@
 		},
 		{
 			"key": "myKey",
-			"value": "163bd9367572b1745706609a4f09281b",
+			"value": "aaaaa",
 			"type": "string"
 		},
 		{
 			"key": "BoardId",
-			"value": ""
+			"value": "63346a0882eb7b03e76567f0"
 		},
 		{
 			"key": "ListId",
-			"value": ""
+			"value": "6322e88a9cb94e04f8b2d98c"
 		},
 		{
 			"key": "CardId",
-			"value": ""
+			"value": "6322f0facbd03e002afc53b7"
 		}
 	]
 }
